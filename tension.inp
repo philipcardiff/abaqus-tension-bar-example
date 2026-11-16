@@ -1,0 +1,47 @@
+*Heading
+2D tensile bar - simple LLM demonstration
+** Units: N, mm, MPa
+**
+*Node
+1,   0.,   0.
+2,  25.,   0.
+3,  50.,   0.
+4,  75.,   0.
+5, 100.,   0.
+6,   0.,  10.
+7,  25.,  10.
+8,  50.,  10.
+9,  75.,  10.
+10,100.,  10.
+**
+*Element, type=CPS4, elset=Bar
+1, 1, 2, 7, 6
+2, 2, 3, 8, 7
+3, 3, 4, 9, 8
+4, 4, 5, 10, 9
+**
+*Material, name=Steel
+*Elastic
+200000., 0.3
+**
+*Solid Section, elset=Bar, material=Steel
+1.0
+**
+*Boundary
+1, 1, 2
+6, 1, 1
+**
+*Step, name=Loading
+*Static
+1., 1.
+**
+*Cload
+5, 1, 50.
+10, 1, 50.
+**
+*Output, field
+*Node Output
+U, RF
+*Element Output
+S, E
+*End Step
